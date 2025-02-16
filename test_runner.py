@@ -69,7 +69,7 @@ def serve():
                         help="repository to observe")
     args = parser.parse_args()
     dispatcher_host, dispatcher_port = args.dispatcher_server.split(":")
-    server = ThreadingTCPServer((dispatcher_host, int(dispatcher_port)), TestHandler)
+    server = ThreadedTCPServer((dispatcher_host, int(dispatcher_port)), TestHandler)
     print('Serving on %s:%s' % (dispatcher_host, int(dispatcher_port)))
     dispatcher_heartbeat = threading.Thread(target=dispatcher_checker, args=(server,))
     try:
