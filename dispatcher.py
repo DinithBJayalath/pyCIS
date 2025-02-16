@@ -66,7 +66,7 @@ class DispatcherHandler(socketserver.BaseRequestHandler):
                 data = "\n".join(data)
                 f.write(data)
             self.request.sendall("OK")
-            
+
 def serve():
     parser = argparse.ArgumentParser()
     parser.add_argument("--host",
@@ -102,7 +102,6 @@ def serve():
         while not server.dead:
             time.sleep(1)
             for runner in server.runners:
-                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Why?
                 try:
                     response = helpers.communicate(runner['host'],
                                                    int(runner['port']),
